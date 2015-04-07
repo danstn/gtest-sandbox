@@ -1,9 +1,12 @@
-CXX = gcc
-CXXFLAGS = -g
+CXX = g++
 INCS = -I./
+OBJS = sum.o
 
-adder: main.c
-	$(CXX) $(CXXFLAGS) -o adder main.c
+adder: main.cpp $(OBJS)
+	$(CXX) -o adder main.cpp $(OBJS)
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INCS)
 
 clean:
-	rm *.o adder*
+	rm -rf *.o adder gmon.out
